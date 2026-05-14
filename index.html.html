@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitesh | Personal Brand Kit</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f5f5f3;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e4e4e0;
+    padding: 2rem;
+  }
+
+  .header { display: flex; align-items: center; gap: 16px; margin-bottom: 1.5rem; }
+  .avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #dbeafe; color: #1e40af;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 600; flex-shrink: 0;
+  }
+  .header-name { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+  .header-sub { font-size: 13px; color: #666; margin-top: 2px; }
+
+  .positioning {
+    background: #eff6ff;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .positioning-label {
+    font-size: 11px; font-weight: 600; color: #2563eb;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .positioning-text { font-size: 15px; color: #1e293b; line-height: 1.65; }
+
+  .tab-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid #d4d4d0;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { background: #f5f5f3; color: #1a1a1a; }
+  .tab-btn.active { border-color: #1a1a1a; color: #1a1a1a; background: #f5f5f3; font-weight: 500; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px; }
+  .pillar-card { background: #fff; border: 1px solid #e4e4e0; border-radius: 12px; padding: 1rem 1.25rem; }
+  .pillar-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .pillar-icon { font-size: 20px; color: #2563eb; }
+  .pillar-title { font-weight: 500; font-size: 14px; color: #1a1a1a; }
+  .pillar-body { font-size: 13px; color: #555; line-height: 1.6; }
+
+  .proof-card { background: #fff; border: 1px solid #e4e4e0; border-radius: 12px; padding: 0 1.25rem; }
+  .proof-row { padding: 14px 0; border-bottom: 1px solid #f0f0ec; }
+  .proof-row:last-child { border-bottom: none; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 6px; margin-bottom: 8px; }
+  .badge-green  { background: #dcfce7; color: #15803d; }
+  .badge-blue   { background: #dbeafe; color: #1d4ed8; }
+  .badge-amber  { background: #fef3c7; color: #b45309; }
+  .badge-purple { background: #f3e8ff; color: #7c3aed; }
+  .badge-teal   { background: #ccfbf1; color: #0f766e; }
+
+  .proof-title { font-weight: 500; font-size: 14px; color: #1a1a1a; margin-bottom: 4px; }
+  .proof-body  { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 10px; }
+  .proof-body.no-mb { margin-bottom: 0; }
+
+  .metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+  .met { background: #f8f8f6; border: 1px solid #e4e4e0; border-radius: 8px; padding: 6px 12px; }
+  .met-num   { font-size: 16px; font-weight: 600; color: #1a1a1a; line-height: 1.2; }
+  .met-label { font-size: 11px; color: #777; margin-top: 2px; }
+
+  .narrative-card { background: #fff; border: 1px solid #e4e4e0; border-radius: 12px; padding: 1.25rem; }
+  .narrative-label {
+    font-size: 11px; font-weight: 600; color: #888;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px;
+  }
+  .quote-block {
+    border-left: 2px solid #d4d4d0; border-radius: 0;
+    padding-left: 14px;
+    font-size: 14px; color: #1a1a1a; line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .quote-accent {
+    border-left: 2px solid #2563eb; border-radius: 0;
+    padding-left: 14px;
+    font-size: 14px; color: #1d4ed8; line-height: 1.8;
+  }
+
+  .team-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .team-table th {
+    text-align: left; font-weight: 600; font-size: 11px; color: #888;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 6px 10px 8px; border-bottom: 1px solid #e4e4e0;
+  }
+  .team-table td { padding: 8px 10px; vertical-align: top; border-bottom: 1px solid #f4f4f2; line-height: 1.5; }
+  .team-table tr:last-child td { border-bottom: none; }
+  .team-table td:first-child { color: #888; font-size: 12px; width: 130px; }
+  .team-table td:nth-child(2) { color: #9b1c1c; }
+  .team-table td:nth-child(3) { color: #166534; }
+
+  @media (max-width: 600px) {
+    .container { padding: 1.25rem; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .team-table td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="avatar">M</div>
+    <div>
+      <div class="header-name">Mitesh</div>
+      <div class="header-sub">Director, Energy &amp; Utilities &nbsp;&#8226;&nbsp; Invitation Homes &nbsp;&#8594;&nbsp; VP, Utilities &amp; Energy</div>
+    </div>
+  </div>
+
+  <div class="positioning">
+    <div class="positioning-label">Positioning statement</div>
+    <div class="positioning-text">I build operational infrastructure that scales, turning fragmented utility systems into measurable, efficient, resident-first experiences across Invitation Homes' national portfolio.</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn" data-tab="pillars" onclick="switchTab('pillars')">Messaging pillars</button>
+    <button class="tab-btn active" data-tab="proof" onclick="switchTab('proof')">Proof points</button>
+    <button class="tab-btn" data-tab="narrative" onclick="switchTab('narrative')">Promotion narrative</button>
+  </div>
+
+  <!-- PILLARS -->
+  <div id="tab-pillars" class="tab-panel">
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <i class="ti ti-topology-star-3 pillar-icon" aria-hidden="true"></i>
+          <span class="pillar-title">Scale through systems</span>
+        </div>
+        <p class="pillar-body">I don't patch problems. I architect solutions that operate reliably across dozens of markets, multiple vendors, and tens of thousands of accounts.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <i class="ti ti-chart-bar pillar-icon" aria-hidden="true"></i>
+          <span class="pillar-title">Data-driven accountability</span>
+        </div>
+        <p class="pillar-body">I hold vendors and internal processes to measurable standards, with structured reporting, SLA frameworks, and the evidence to back every demand.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <i class="ti ti-home-heart pillar-icon" aria-hidden="true"></i>
+          <span class="pillar-title">Resident-first operations</span>
+        </div>
+        <p class="pillar-body">I make utility complexity invisible. When I do my job right, residents experience seamless service, not confusing bills, missed setups, or unanswered questions.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <i class="ti ti-robot pillar-icon" aria-hidden="true"></i>
+          <span class="pillar-title">AI-forward leadership</span>
+        </div>
+        <p class="pillar-body">I actively adopt and champion AI and automation tools that multiply team capacity, freeing associates for higher-value market support and strategic work.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF POINTS -->
+  <div id="tab-proof" class="tab-panel active">
+    <div class="proof-card">
+
+      <div class="proof-row">
+        <div><span class="badge badge-green">Financial impact: utility credits</span></div>
+        <p class="proof-title">$919K+ in credit reduction across two years</p>
+        <p class="proof-body">Built multi-market analytics infrastructure: Tableau dashboard, bi-weekly monitoring with market teams, WO documentation enforcement, and Policy/Procedure creation. Tampa deep-dive flagged $37,747 in credits approved without documentation, triggering process enforcement.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">$550K</div><div class="met-label">YOY reduction, 2025</div></div>
+          <div class="met"><div class="met-num">$369K</div><div class="met-label">lower YTD Jan-Apr 2026</div></div>
+          <div class="met"><div class="met-num">39.8%</div><div class="met-label">Tampa credits w/o work order</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-green">Financial impact: late fees</span></div>
+        <p class="proof-title">$459K cumulative late fee savings since 2023</p>
+        <p class="proof-body">Active monitoring of mail-based billing providers and check-dependent utilities. Identified City of Phoenix and Kaufman County MUD #12 as highest-volume drivers; pushing Conservice toward optimized payment methods.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">$459K</div><div class="met-label">cumulative savings since 2023</div></div>
+          <div class="met"><div class="met-num">$208K</div><div class="met-label">saved vs. 2024</div></div>
+          <div class="met"><div class="met-num">41%</div><div class="met-label">YOY reduction, Mar 2026</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-green">Financial impact: CSA &amp; surety bonds</span></div>
+        <p class="proof-title">56,415 accounts enrolled in under two years, directly reducing turn times</p>
+        <p class="proof-body">Managed and expanded CSA enrollment across Duke Energy, FPL, SoCal Gas, Greystone Power, TECO, and others. Surety bond program eliminates cash deposit requirements at a fraction of the cost, with $539K in deposit avoidance tracked through the program.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">56,415</div><div class="met-label">accounts enrolled (under 2 yrs)</div></div>
+          <div class="met"><div class="met-num">$539K</div><div class="met-label">deposit avoidance</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-blue">Operational excellence: activations</span></div>
+        <p class="proof-title">Activation success rate lifted from ~85% to 92-95% and sustained</p>
+        <p class="proof-body">Managed activation performance through CSA automatic transfers, improved QC from Conservice Activations team, and proactive deed uploads. Reschedules tracked and held below prior-year levels.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">92-95%</div><div class="met-label">activation success rate (sustained)</div></div>
+          <div class="met"><div class="met-num">~85%</div><div class="met-label">baseline in 2025</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-blue">Cross-functional risk mitigation</span></div>
+        <p class="proof-title">Direct market intervention preventing operational and reputational risk across multiple markets</p>
+        <p class="proof-body">Led targeted interventions that resolved material issues at the market level, going beyond program oversight into hands-on operational leadership. Atlanta: reduced daily open utility issues from 76 to fewer than 10, contributing to a peak turn time reduction from 21 to 14 days (recognized on the company All Hands call, Feb 2026). Restored billing access with the City of Phoenix, safeguarding expense recovery and avoiding all future disconnects. Prevented multiple occupied resident disconnects across municipalities caused by check payment method failures. Led partnership with Pathway Homes operations team to reduce BTR utility delays.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">76 to &lt;10</div><div class="met-label">open utility issues, Atlanta</div></div>
+          <div class="met"><div class="met-num">21 to 14 days</div><div class="met-label">peak turn time reduction, Atlanta</div></div>
+          <div class="met"><div class="met-num">All Hands</div><div class="met-label">recognized Feb 2026</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-blue">Systems &amp; technology</span></div>
+        <p class="proof-title">50,000+ unmanaged emails replaced by structured MS Forms intake</p>
+        <p class="proof-body">Led enterprise utility data infrastructure: Tableau credits dashboard, KNIME automation oversight, MS Forms structured intake replacing an unmanaged inbox workflow, Conservice SSO completion for the Single Family portal, and a one-time utility data ingestion into Salesforce to establish a foundation for enterprise data visibility. The result is a faster, trackable, auditable market support process with documented accountability for vendor tool adoption.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">50,000+</div><div class="met-label">emails replaced by MS Forms</div></div>
+          <div class="met"><div class="met-num">6,400+</div><div class="met-label">structured submissions since rollout</div></div>
+          <div class="met"><div class="met-num">SSO</div><div class="met-label">Conservice Single Family portal</div></div>
+          <div class="met"><div class="met-num">Salesforce</div><div class="met-label">utility data ingestion completed</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-amber">Resident experience</span></div>
+        <p class="proof-title">37% of 17,010 utility calls identified as entirely preventable</p>
+        <p class="proof-body">Analysis of inbound call volume drove a full revamp of resident-facing utility communications: IH Utility Services website, Conservice welcome letter, and Lease Easy package. Surfaces first-bill timing, portal access, setup requirements, and preferred provider offers (Gas South, TXU Energy). Four compliance initiatives actively executing, with a call diversion initiative in progress to further reduce volume.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">17,010</div><div class="met-label">utility calls analyzed</div></div>
+          <div class="met"><div class="met-num">37%</div><div class="met-label">preventable with better comms</div></div>
+          <div class="met"><div class="met-num">4</div><div class="met-label">compliance initiatives executing</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-purple">Innovation: solar pilot</span></div>
+        <p class="proof-title">Leading IH's first residential solar pilot, coordinating across Legal, Marketing, Pre-Leasing, and Billing</p>
+        <p class="proof-body">Spearheading a rooftop solar pilot in Orlando (Palm Bay) with Elevation Energy. Ten homes outfitted with solar systems; residents receive monthly bill credits while IH captures on-site generation value. Three homes actively under installation as of April 2026, with first systems targeted operational in June 2026. Foundation for a broader portfolio-wide energy cost reduction strategy.</p>
+        <div class="metrics">
+          <div class="met"><div class="met-num">10</div><div class="met-label">homes in pilot</div></div>
+          <div class="met"><div class="met-num">3</div><div class="met-label">under active installation</div></div>
+          <div class="met"><div class="met-num">June 2026</div><div class="met-label">first systems operational</div></div>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div><span class="badge badge-teal">Team development</span></div>
+        <p class="proof-title">Transformed team structure, compensation, and capability over 2.5 years</p>
+        <p class="proof-body no-mb">Built a team that scales with the portfolio rather than being constrained by it. Compensation, roles, and daily workflows have all been fundamentally upgraded.</p>
+
+        <table class="team-table">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>2024: manual and reactive</th>
+              <th>2026: automated and proactive</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Funding reviews</td>
+              <td>Manual, case-by-case review of each item</td>
+              <td>KNIME automated processing; exceptions-only review</td>
+            </tr>
+            <tr>
+              <td>Activations</td>
+              <td>Manual tracking and reactive follow-up</td>
+              <td>Proactive document updates; right POC assigned within internal teams</td>
+            </tr>
+            <tr>
+              <td>Market support</td>
+              <td>High email volume, unstructured inbox management</td>
+              <td>Structured Utility Support Request forms via MS Forms; faster and trackable</td>
+            </tr>
+            <tr>
+              <td>Refund validation</td>
+              <td>Manual validation, significant associate time</td>
+              <td>Near-passthrough to AR; process redesigned to eliminate redundant steps</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="metrics" style="margin-top: 12px;">
+          <div class="met"><div class="met-num">Vanessa G.</div><div class="met-label">JD reclassification and pay increase</div></div>
+          <div class="met"><div class="met-num">Angela A.</div><div class="met-label">Promoted to Lead, Nat'l Utilities Admin</div></div>
+          <div class="met"><div class="met-num">$23-24/hr</div><div class="met-label">pay floor (up from $19-21)</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NARRATIVE -->
+  <div id="tab-narrative" class="tab-panel">
+    <div class="narrative-card">
+      <div class="narrative-label">Your 60-second internal story</div>
+      <p class="quote-block">Over the past 2.5 years, I have been operating at VP scope: managing vendor ecosystems, building market-level analytics infrastructure, driving resident-facing communications strategy, pioneering IH's first solar pilot, and developing a team that has fundamentally changed how it works.</p>
+      <p class="quote-block">The numbers tell the story. $919K in utility credit reduction, $459K in late fee savings, 56,000 accounts enrolled in CSAs, activation rates lifted from 85% to 92-95% and held there, and 50,000 unmanaged emails replaced by structured intake systems. These are not incremental improvements. They are enterprise-scale transformations built from the ground up.</p>
+      <p class="quote-block">On the team side: I reclassified a role, promoted an associate, raised the pay floor for every Utilities Administrator in the portfolio, and embedded AI tools into the team's daily workflow. The team we have today would not be recognizable to someone who saw it in 2023.</p>
+      <p class="quote-accent">I am not asking for a promotion to grow into the role. I am asking for the title to match the work I am already doing.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+  }
+</script>
+</body>
+</html>
